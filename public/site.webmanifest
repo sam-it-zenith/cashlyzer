@@ -1,0 +1,16 @@
+{
+  "name": "Cashlyzer",
+  "short_name": "Cashlyzer",
+  "description": "Track your expenses, income, and savings with AI-powered insights",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+} 
