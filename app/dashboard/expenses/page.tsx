@@ -71,7 +71,7 @@ export default function ExpensesPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/expenses", {
+      const response = await fetch("https://api.cashlyzer.com/api/expenses", {
         headers: {
           Authorization: headers.Authorization,
         },
@@ -117,7 +117,7 @@ export default function ExpensesPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -187,7 +187,7 @@ export default function ExpensesPage() {
         throw new Error("No auth headers available");
       }
       
-      const response = await fetch("http://api.cashlyzer.com/api/expenses", {
+      const response = await fetch("https://api.cashlyzer.com/api/expenses", {
         headers: {
           Authorization: headers.Authorization,
           "Content-Type": "application/json",
@@ -228,7 +228,7 @@ export default function ExpensesPage() {
         throw new Error("No auth headers available");
       }
       
-      const response = await fetch(`http://api.cashlyzer.com/api/expenses/${id}`, {
+      const response = await fetch(`https://api.cashlyzer.com/api/expenses/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: headers.Authorization,

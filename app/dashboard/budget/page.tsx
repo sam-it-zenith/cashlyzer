@@ -38,7 +38,7 @@ export default function BudgetPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -61,7 +61,7 @@ export default function BudgetPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/budget", {
+      const response = await fetch("https://api.cashlyzer.com/api/budget", {
         headers: { Authorization: headers.Authorization },
         });
         
@@ -101,7 +101,7 @@ export default function BudgetPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/budget", {
+      const response = await fetch("https://api.cashlyzer.com/api/budget", {
         method: "POST",
         headers: {
           Authorization: headers.Authorization,

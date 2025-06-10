@@ -55,7 +55,7 @@ export function Header() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 

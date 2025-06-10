@@ -23,7 +23,7 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://api.cashlyzer.com/api/auth/forgot-password', {
+      const response = await fetch('https://api.cashlyzer.com/api/auth/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -82,7 +82,7 @@ export default function SavingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/savings", {
+      const response = await fetch("https://api.cashlyzer.com/api/savings", {
         headers: { Authorization: headers.Authorization },
       });
 
@@ -119,7 +119,7 @@ export default function SavingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("http://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -147,8 +147,8 @@ export default function SavingsPage() {
       }
 
       const endpoint = savingsData?.id 
-        ? `http://api.cashlyzer.com/api/savings/${savingsData.id}`
-        : "http://api.cashlyzer.com/api/savings";
+        ? `https://api.cashlyzer.com/api/savings/${savingsData.id}`
+        : "https://api.cashlyzer.com/api/savings";
 
       const method = savingsData?.id ? "PUT" : "POST";
 
@@ -188,7 +188,7 @@ export default function SavingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch(`http://api.cashlyzer.com/api/savings/${savingsData.id}`, {
+      const response = await fetch(`https://api.cashlyzer.com/api/savings/${savingsData.id}`, {
         method: "DELETE",
         headers: { Authorization: headers.Authorization },
       });
@@ -257,7 +257,7 @@ export default function SavingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch(`http://api.cashlyzer.com/api/savings/${savingsData.id}/contribute`, {
+      const response = await fetch(`https://api.cashlyzer.com/api/savings/${savingsData.id}/contribute`, {
         method: 'POST',
         headers: {
           Authorization: headers.Authorization,

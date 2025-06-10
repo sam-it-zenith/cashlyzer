@@ -56,7 +56,7 @@ export function AuthForm({ type }: AuthFormProps) {
     try {
       const endpoint = type === "login" ? "/api/auth/login" : "/api/auth/signup";
       
-      const response = await fetch(`http://api.cashlyzer.com${endpoint}`, {
+      const response = await fetch(`https://api.cashlyzer.com${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

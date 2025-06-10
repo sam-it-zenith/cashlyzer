@@ -48,7 +48,7 @@ export function Notifications() {
         throw new Error('No auth headers available');
       }
 
-      const response = await fetch('http://api.cashlyzer.com/api/profile', {
+      const response = await fetch('https://api.cashlyzer.com/api/profile', {
         headers
       });
 
@@ -89,7 +89,7 @@ export function Notifications() {
         throw new Error('No auth headers available');
       }
 
-      const response = await fetch('http://api.cashlyzer.com/api/notifications', {
+      const response = await fetch('https://api.cashlyzer.com/api/notifications', {
         headers
       });
 
@@ -153,7 +153,7 @@ export function Notifications() {
         throw new Error('No auth headers available');
       }
 
-      const response = await fetch(`http://api.cashlyzer.com/api/notifications/${notificationId}/read`, {
+      const response = await fetch(`https://api.cashlyzer.com/api/notifications/${notificationId}/read`, {
         method: 'PATCH',
         headers
       });
@@ -197,7 +197,7 @@ export function Notifications() {
         throw new Error('No auth headers available');
       }
 
-      const response = await fetch('http://api.cashlyzer.com/api/notifications/read-all', {
+      const response = await fetch('https://api.cashlyzer.com/api/notifications/read-all', {
         method: 'PATCH',
         headers
       });
@@ -238,7 +238,7 @@ export function Notifications() {
         throw new Error('No auth headers available');
       }
 
-      const response = await fetch('http://api.cashlyzer.com/api/notifications/old', {
+      const response = await fetch('https://api.cashlyzer.com/api/notifications/old', {
         method: 'DELETE',
         headers
       });
