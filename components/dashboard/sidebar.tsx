@@ -45,7 +45,12 @@ function NavItem({ icon, label, href, active, onClick }: NavItemProps) {
   );
 }
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+  className?: string;
+}
+
+export function Sidebar({ onClose, className }: SidebarProps) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const { theme, setTheme } = useTheme();
@@ -69,11 +74,11 @@ export function Sidebar() {
   ];
 
   return (
-    <aside id="sidebar" className="hidden w-64 flex-col border-r bg-card lg:flex">
+    <aside id="sidebar" className={className}>
       <div className="flex h-14 items-center border-b px-4">
-        <Link href="/dashboard" className="flex items-center">
-          <BadgeDollarSign className="h-6 w-6 text-primary mr-2" />
-          <span className="font-bold text-xl">Cashlyzer</span>
+        <Link href="/dashboard" className="flex items-center overflow-hidden w-full">
+          <BadgeDollarSign className="h-6 w-6 text-primary" />
+          <span className="font-bold text-xl overflow-hidden max-w-full">Cashlyzer</span>
         </Link>
       </div>
       <div className="flex-1 overflow-auto py-4">
@@ -97,6 +102,7 @@ export function Sidebar() {
               label={item.label}
               href={item.href}
               active={pathname === item.href}
+              onClick={onClose}
             />
           ))}
         </nav>

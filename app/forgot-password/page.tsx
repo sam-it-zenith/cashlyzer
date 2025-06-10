@@ -53,29 +53,29 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="container flex min-h-screen w-screen flex-col items-center justify-center py-16">
+    <div className="container flex min-h-screen w-screen flex-col items-center justify-center px-4 py-8 sm:py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mx-auto flex w-full flex-col justify-center space-y-8 sm:w-[450px] md:w-[500px]"
+        className="mx-auto flex w-full flex-col justify-center space-y-6 sm:space-y-8 sm:w-[450px] md:w-[500px]"
       >
-        <div className="flex flex-col space-y-3 text-center">
+        <div className="flex flex-col space-y-2 sm:space-y-3 text-center">
           <div className="flex items-center justify-center">
-            <BadgeDollarSign className="h-10 w-10 text-primary" />
+            <BadgeDollarSign className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
           </div>
-          <h1 className="text-3xl font-semibold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
             Forgot Password
           </h1>
-          <p className="text-base text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             Enter your email address and we'll send you instructions to reset your password
           </p>
         </div>
 
         <Card className="w-full">
-          <CardHeader className="space-y-3">
-            <CardTitle className="text-2xl">Reset Password</CardTitle>
-            <CardDescription className="text-base">
+          <CardHeader className="space-y-2 sm:space-y-3">
+            <CardTitle className="text-xl sm:text-2xl">Reset Password</CardTitle>
+            <CardDescription className="text-sm sm:text-base">
               {isSubmitted 
                 ? "Check your email for the password reset link"
                 : "We'll send you a link to reset your password"}
@@ -83,9 +83,9 @@ export default function ForgotPasswordPage() {
           </CardHeader>
           <CardContent>
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-3">
-                  <Label htmlFor="email" className="text-base">Email</Label>
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="space-y-2 sm:space-y-3">
+                  <Label htmlFor="email" className="text-sm sm:text-base">Email</Label>
                   <Input
                     id="email"
                     type="email"
@@ -93,17 +93,17 @@ export default function ForgotPasswordPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="h-12 text-base"
+                    className="h-10 sm:h-12 text-sm sm:text-base"
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="w-full h-12 text-base"
+                  className="w-full h-10 sm:h-12 text-sm sm:text-base"
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                       Sending instructions...
                     </>
                   ) : (
@@ -112,18 +112,18 @@ export default function ForgotPasswordPage() {
                 </Button>
               </form>
             ) : (
-              <div className="space-y-6">
-                <div className="rounded-lg bg-primary/10 p-4 text-center">
-                  <p className="text-base text-primary">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="rounded-lg bg-primary/10 p-3 sm:p-4 text-center">
+                  <p className="text-sm sm:text-base text-primary">
                     Password reset instructions have been sent to your email address.
                     Please check your inbox and follow the instructions to reset your password.
                   </p>
                 </div>
                 <Button
                   onClick={() => router.push("/login")}
-                  className="w-full h-12 text-base"
+                  className="w-full h-10 sm:h-12 text-sm sm:text-base"
                 >
-                  <ArrowLeft className="mr-2 h-5 w-5" />
+                  <ArrowLeft className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Back to Login
                 </Button>
               </div>
@@ -131,7 +131,7 @@ export default function ForgotPasswordPage() {
           </CardContent>
         </Card>
 
-        <div className="text-center text-base">
+        <div className="text-center text-sm sm:text-base">
           Remember your password?{" "}
           <Link
             href="/login"

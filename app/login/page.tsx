@@ -133,7 +133,7 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <div className="text-center text-base">
+        <div className="text-center text-base pb-5">
           Don't have an account?{" "}
           <Link
             href="/signup"

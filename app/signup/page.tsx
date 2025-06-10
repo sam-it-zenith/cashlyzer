@@ -167,7 +167,7 @@ export default function SignupPage() {
           </CardContent>
         </Card>
 
-        <div className="text-center text-base">
+        <div className="text-center text-base pb-5">
               Already have an account?{" "}
           <Link
             href="/login"

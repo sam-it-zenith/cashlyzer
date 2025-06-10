@@ -305,7 +305,7 @@ export default function ExpensesPage() {
           </p>
         </motion.div>
         <motion.div variants={item}>
-          <Button onClick={() => setIsAddExpenseOpen(true)}>
+          <Button onClick={() => setIsAddExpenseOpen(true)} className="w-full sm:w-auto">
             <Plus className="h-4 w-4 mr-2" />
             Add Expense
           </Button>
