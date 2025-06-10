@@ -638,7 +638,7 @@ export default function SettingsPage() {
                 variant="outline"
                 size="sm"
                 onClick={handleGenerateSummary}
-                disabled={generatingSummary}
+                disabled={true}
               >
                 {generatingSummary ? (
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
