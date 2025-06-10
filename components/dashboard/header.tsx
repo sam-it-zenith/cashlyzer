@@ -93,7 +93,11 @@ export function Header() {
               <span className="sr-only">Toggle menu</span>
             </Button>
             <h1 className="text-lg font-semibold">
-              {pathname.split('/').pop()?.charAt(0).toUpperCase() + pathname.split('/').pop()?.slice(1) || 'Dashboard'}
+              {(() => {
+                const lastSegment = pathname.split('/').pop();
+                if (!lastSegment) return 'Dashboard';
+                return lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1);
+              })()}
             </h1>
           </div>
 
