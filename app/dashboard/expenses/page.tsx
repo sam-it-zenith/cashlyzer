@@ -224,7 +224,7 @@ export default function ExpensesPage() {
     
     try {
       const headers = getAuthHeaders();
-      if (!headers.Authorization) {
+      if (!headers || !headers.Authorization) {
         throw new Error("No auth headers available");
       }
       
