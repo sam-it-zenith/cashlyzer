@@ -216,12 +216,12 @@ export default function SavingsPage() {
       ? (savingsData.currentAmount / savingsData.targetAmount) * 100 
     : 0;
   if (progress >= 100) {
-  return {
-    icon: <Trophy className="h-4 w-4" />,
-    title: "Goal Achieved!",
-    description: "Congratulations! You've reached your savings goal.",
-    variant: "success" as const,
-  };
+    return {
+      icon: <Trophy className="h-4 w-4" />,
+      title: "Goal Achieved!",
+      description: "Congratulations! You've reached your savings goal.",
+      variant: "default" as const,
+    };
 }
     else if (progress >= 90) {
       return {
