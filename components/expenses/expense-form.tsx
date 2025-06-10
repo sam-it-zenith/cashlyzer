@@ -257,7 +257,10 @@ export function ExpenseForm({
               )}
             />
 
-            {selectedCategory && categories.find(c => c.id === selectedCategory)?.subcategories?.length > 0 && (
+            {selectedCategory && (() => {
+              const selectedCategoryData = categories.find(c => c.id === selectedCategory);
+              return selectedCategoryData?.subcategories && selectedCategoryData.subcategories.length > 0;
+            })() && (
               <FormField
                 control={form.control}
                 name="subcategory"
