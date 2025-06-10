@@ -29,7 +29,11 @@ interface SummaryChartProps {
   currencySymbol: string;
 }
 
-const CustomTooltip = ({ active, payload, label, currencySymbol }: TooltipProps<number, string> & { currencySymbol: string }) => {
+interface CustomTooltipProps extends TooltipProps<number, string> {
+  currencySymbol: string;
+}
+
+const CustomTooltip = ({ active, payload, label, currencySymbol }: CustomTooltipProps) => {
   const { theme } = useTheme();
   
   if (active && payload && payload.length) {
@@ -95,7 +99,7 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                       tick={{ fontSize: 12 }}
                       tickLine={false}
                     />
-                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip<number, string> content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
                     <Legend />
                   <Area 
                     type="monotone" 
@@ -132,7 +136,7 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                       tick={{ fontSize: 12 }}
                       tickLine={false}
                     />
-                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip<number, string> content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
                     <Legend />
                     <Bar 
                       dataKey="expense" 
@@ -174,7 +178,7 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                         />
                     ))}
                   </Pie>
-                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip<number, string> content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
                     <Legend 
                       layout="vertical" 
                       align="right"
