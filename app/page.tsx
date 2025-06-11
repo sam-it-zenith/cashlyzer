@@ -561,6 +561,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+
+      <img src="https://i.ibb.co/KjnC0Zgt/bolt-new.png" alt="Bolt Watermark" className="sticky-image"/>
     </div>
   );
 }

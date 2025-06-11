@@ -9,8 +9,25 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Cashlyzer – Smarter Finances, Better You',
-  description: 'Manage your income, expenses, budgets, and savings with AI-powered insights. Cashlyzer helps you take full control of your financial future.',
-  keywords: ['Cashlyzer', 'finance tracker', 'budget app', 'expense tracker', 'AI financial insights', 'personal finance', 'money management'],
+  description: 'Cashlyzer is your all-in-one personal finance assistant. Track income, manage expenses, set budgets, monitor savings goals, and get smart AI-powered financial insights—all in one clean, modern interface.',
+keywords: [
+  'Cashlyzer', 
+  'finance tracker', 
+  'budget app', 
+  'expense tracker', 
+  'AI financial insights', 
+  'personal finance', 
+  'money management', 
+  'financial planning', 
+  'budget planner', 
+  'income tracker', 
+  'savings app', 
+  'monthly spending report', 
+  'financial dashboard', 
+  'AI money assistant', 
+  'track finances online', 
+  'financial goals app'
+],
   authors: [{ name: 'Cashlyzer' }],
   icons: {
     icon: '/icon.png',

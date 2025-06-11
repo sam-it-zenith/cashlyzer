@@ -196,7 +196,7 @@ export default function SettingsPage() {
 
       // Format the data according to the API's expected structure
       const requestData = {
-        displayName: updateData.name,
+        name: updateData.name,
         phoneNumber: updateData.phoneNumber,
         currency: updateData.currency,
         theme: theme, // Include current theme
