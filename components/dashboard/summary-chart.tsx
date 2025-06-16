@@ -29,7 +29,17 @@ interface SummaryChartProps {
   currencySymbol: string;
 }
 
-interface CustomTooltipProps extends TooltipProps<number, string> {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value: number;
+    name: string;
+    payload: {
+      month: string;
+      amount: number;
+    };
+  }>;
+  label?: string;
   currencySymbol: string;
 }
 
@@ -40,11 +50,9 @@ const CustomTooltip = ({ active, payload, label, currencySymbol }: CustomTooltip
     return (
       <div className="rounded-lg border bg-card p-3 shadow-sm">
         <p className="text-sm font-medium text-foreground">{label}</p>
-        {payload.map((entry, index) => (
-          <p key={index} className="text-sm text-muted-foreground">
-            {entry.name}: {currencySymbol}{entry.value?.toFixed(2)}
-          </p>
-        ))}
+        <p className="text-sm text-muted-foreground">
+          {currencySymbol}{payload[0].value.toFixed(2)}
+        </p>
       </div>
     );
   }
