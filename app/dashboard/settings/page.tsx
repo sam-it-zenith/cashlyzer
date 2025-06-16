@@ -404,26 +404,24 @@ export default function SettingsPage() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-8 px-3"
+      className="space-y-6 sm:space-y-8 px-2 sm:px-3 md:px-6 lg:px-8 py-4 sm:py-6"
     >
       <motion.div variants={item}>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Settings</h1>
+        <p className="text-sm sm:text-base text-muted-foreground">
           Manage your account settings and preferences
         </p>
       </motion.div>
       
       <motion.div variants={item}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Profile Information</CardTitle>
-            <CardDescription>
-              Update your personal information and profile picture
-            </CardDescription>
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Profile Information</CardTitle>
+            <CardDescription className="text-sm">Update your personal information and profile picture</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="flex items-center space-x-4">
-              <div className="relative h-24 w-24">
+          <CardContent className="px-0 sm:px-0 space-y-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <div className="relative h-20 w-20 sm:h-24 sm:w-24">
                 {profile?.profilePictureUrl ? (
                   <Image
                     src={profile.profilePictureUrl}
@@ -432,14 +430,14 @@ export default function SettingsPage() {
                     className="rounded-full object-cover"
                   />
                 ) : (
-                  <div className="h-24 w-24 rounded-full bg-muted flex items-center justify-center">
-                    <User className="h-12 w-12 text-muted-foreground" />
+                  <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-muted flex items-center justify-center">
+                    <User className="h-10 w-10 sm:h-12 sm:w-12 text-muted-foreground" />
                   </div>
                 )}
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 <Label htmlFor="profile-picture">Profile Picture</Label>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col sm:flex-row items-center gap-2">
                   <Input
                     id="profile-picture"
                     type="file"
@@ -452,6 +450,7 @@ export default function SettingsPage() {
                     variant="outline"
                     onClick={() => document.getElementById("profile-picture")?.click()}
                     disabled={uploadingImage}
+                    className="w-full sm:w-auto"
                   >
                     {uploadingImage ? (
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -483,7 +482,7 @@ export default function SettingsPage() {
                   disabled
                   className="bg-muted cursor-not-allowed"
                 />
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   Email address cannot be changed
                 </p>
               </div>
@@ -498,7 +497,7 @@ export default function SettingsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="currency">Currency</Label>
                   <select
@@ -513,7 +512,7 @@ export default function SettingsPage() {
                       </option>
                     ))}
                   </select>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     This will be used for all monetary values
                   </p>
                 </div>
@@ -528,7 +527,7 @@ export default function SettingsPage() {
                   >
                     <option value="en">English</option>
                   </select>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Language cannot be changed
                   </p>
                 </div>
@@ -543,47 +542,39 @@ export default function SettingsPage() {
       </motion.div>
       
       <motion.div variants={item}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Appearance</CardTitle>
-            <CardDescription>
-              Customize how Cashlyzer looks on your device
-            </CardDescription>
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Appearance</CardTitle>
+            <CardDescription className="text-sm">Customize how Cashlyzer looks on your device</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="px-0 sm:px-0 space-y-6">
             <div className="space-y-2">
               <Label htmlFor="theme">Theme</Label>
-              <div className="flex flex-col space-y-1">
-                <div className="flex items-center space-x-2">
-                  <Button
-                    variant={theme === "light" ? "default" : "outline"}
-                    className="w-full justify-start"
-                    onClick={() => handleThemeChange("light")}
-                  >
-                    <Sun className="h-4 w-4 mr-2" />
-                    Light
-                  </Button>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button
-                    variant={theme === "dark" ? "default" : "outline"}
-                    className="w-full justify-start"
-                    onClick={() => handleThemeChange("dark")}
-                  >
-                    <Moon className="h-4 w-4 mr-2" />
-                    Dark
-                  </Button>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button
-                    variant={theme === "system" ? "default" : "outline"}
-                    className="w-full justify-start"
-                    onClick={() => handleThemeChange("system")}
-                  >
-                    <Monitor className="h-4 w-4 mr-2" />
-                    System
-                  </Button>
-                </div>
+              <div className="flex flex-col gap-2">
+                <Button
+                  variant={theme === "light" ? "default" : "outline"}
+                  className="w-full justify-start"
+                  onClick={() => handleThemeChange("light")}
+                >
+                  <Sun className="h-4 w-4 mr-2" />
+                  Light
+                </Button>
+                <Button
+                  variant={theme === "dark" ? "default" : "outline"}
+                  className="w-full justify-start"
+                  onClick={() => handleThemeChange("dark")}
+                >
+                  <Moon className="h-4 w-4 mr-2" />
+                  Dark
+                </Button>
+                <Button
+                  variant={theme === "system" ? "default" : "outline"}
+                  className="w-full justify-start"
+                  onClick={() => handleThemeChange("system")}
+                >
+                  <Monitor className="h-4 w-4 mr-2" />
+                  System
+                </Button>
               </div>
             </div>
           </CardContent>
@@ -591,76 +582,75 @@ export default function SettingsPage() {
       </motion.div>
       
       <motion.div variants={item}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Notifications</CardTitle>
-            <CardDescription>
-              Manage your notification preferences
-            </CardDescription>
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Notifications</CardTitle>
+            <CardDescription className="text-sm">Manage your notification preferences</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label htmlFor="budget-alerts">Budget Alerts</Label>
-                <p className="text-sm text-muted-foreground">
-                  Receive notifications when you approach your budget limits
-                </p>
+          <CardContent className="px-0 sm:px-0 space-y-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                <div className="space-y-0.5">
+                  <Label htmlFor="budget-alerts">Budget Alerts</Label>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Receive notifications when you approach your budget limits
+                  </p>
+                </div>
+                <Switch 
+                  id="budget-alerts" 
+                  checked={settings.notifications.budgetAlerts}
+                  onCheckedChange={(checked) => handleNotificationChange("budgetAlerts", checked)}
+                />
               </div>
-              <Switch 
-                id="budget-alerts" 
-                checked={settings.notifications.budgetAlerts}
-                onCheckedChange={(checked) => handleNotificationChange("budgetAlerts", checked)}
-              />
-            </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label htmlFor="monthly-summary">Monthly Summary</Label>
-                <p className="text-sm text-muted-foreground">
-                  Receive a monthly report of your financial activity
-                </p>
+              <Separator />
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                <div className="space-y-0.5">
+                  <Label htmlFor="monthly-summary">Monthly Summary</Label>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Receive a monthly report of your financial activity
+                  </p>
+                </div>
+                <Switch 
+                  id="monthly-summary" 
+                  checked={settings.notifications.monthlySummary}
+                  onCheckedChange={(checked) => handleNotificationChange("monthlySummary", checked)}
+                />
               </div>
-              <Switch 
-                id="monthly-summary" 
-                checked={settings.notifications.monthlySummary}
-                onCheckedChange={(checked) => handleNotificationChange("monthlySummary", checked)}
-              />
-            </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label>Generate Report</Label>
-                <p className="text-sm text-muted-foreground">
-                  Send a detailed financial report to your email
-                </p>
+              <Separator />
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+                <div className="space-y-0.5">
+                  <Label>Generate Report</Label>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Send a detailed financial report to your email
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleGenerateSummary}
+                  disabled={true}
+                  className="w-full sm:w-auto"
+                >
+                  {generatingSummary ? (
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  ) : (
+                    <Mail className="h-4 w-4 mr-2" />
+                  )}
+                  {generatingSummary ? "Sending..." : "Send Report"}
+                </Button>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleGenerateSummary}
-                disabled={true}
-              >
-                {generatingSummary ? (
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                ) : (
-                  <Mail className="h-4 w-4 mr-2" />
-                )}
-                {generatingSummary ? "Sending..." : "Send Report"}
-              </Button>
             </div>
           </CardContent>
         </Card>
       </motion.div>
       
       <motion.div variants={item}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
-            <CardDescription>
-              Manage your account settings
-            </CardDescription>
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Account</CardTitle>
+            <CardDescription className="text-sm">Manage your account settings</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="px-0 sm:px-0 space-y-6">
             <Button
               variant="outline"
               className="w-full justify-start"
@@ -702,9 +692,7 @@ export default function SettingsPage() {
                   />
                 </div>
                 <AlertDialogFooter>
-                  <AlertDialogCancel onClick={() => setDeleteEmailConfirmation("")}>
-                    Cancel
-                  </AlertDialogCancel>
+                  <AlertDialogCancel onClick={() => setDeleteEmailConfirmation("")}>Cancel</AlertDialogCancel>
                   <AlertDialogAction
                     onClick={handleDeleteAccount}
                     disabled={deleteEmailConfirmation !== profile?.email}

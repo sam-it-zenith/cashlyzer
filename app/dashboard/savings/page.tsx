@@ -290,19 +290,19 @@ export default function SavingsPage() {
   const savingsStatus = getSavingsStatus();
 
   return (
-    <div className="container mx-auto py-6 px-4 space-y-8">
+    <div className="container mx-auto py-4 sm:py-6 px-3 sm:px-4 space-y-6 sm:space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Savings Goals</h1>
-        <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Savings Goals</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Track and manage your savings progress
-        </p>
+          </p>
         </div>
         {savingsData?.id && (
           <Button 
             variant="destructive" 
             onClick={handleDeleteSavings}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto"
           >
             <Trash2 className="h-4 w-4" />
             Delete Plan
@@ -311,26 +311,30 @@ export default function SavingsPage() {
       </div>
 
       {savingsStatus && (
-        <Alert variant={savingsStatus.variant}>
-          {savingsStatus.icon}
-          <AlertTitle>{savingsStatus.title}</AlertTitle>
-          <AlertDescription>{savingsStatus.description}</AlertDescription>
-          </Alert>
+        <Alert variant={savingsStatus.variant} className="p-3 sm:p-4">
+          <div className="flex items-start gap-3">
+            {savingsStatus.icon}
+            <div>
+              <AlertTitle className="text-base sm:text-lg">{savingsStatus.title}</AlertTitle>
+              <AlertDescription className="mt-1 text-sm">{savingsStatus.description}</AlertDescription>
+            </div>
+          </div>
+        </Alert>
       )}
       
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Savings Plan</CardTitle>
-            <CardDescription>Set your monthly contribution and target amount</CardDescription>
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Savings Plan</CardTitle>
+            <CardDescription className="text-sm">Set your monthly contribution and target amount</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="px-0 sm:px-0 space-y-4">
             <div className="space-y-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Monthly Contribution</label>
                 <Input
                   type="number"
-                  placeholder="Enter monthly contribution"
+                  placeholder={`Enter monthly contribution (${getCurrencySymbol(userCurrency)})`}
                   value={monthlyContribution}
                   onChange={(e) => setMonthlyContribution(e.target.value)}
                 />
@@ -339,7 +343,7 @@ export default function SavingsPage() {
                 <label className="text-sm font-medium">Target Amount</label>
                 <Input
                   type="number"
-                  placeholder="Enter target amount"
+                  placeholder={`Enter target amount (${getCurrencySymbol(userCurrency)})`}
                   value={targetAmount}
                   onChange={(e) => setTargetAmount(e.target.value)}
                 />
@@ -351,7 +355,7 @@ export default function SavingsPage() {
                   value={targetDate}
                   onChange={(e) => setTargetDate(e.target.value)}
                 />
-            </div>
+              </div>
               <Button onClick={handleUpdateSavings} className="w-full">
                 {savingsData?.id ? "Update Savings Plan" : "Create Savings Plan"}
               </Button>
@@ -359,18 +363,18 @@ export default function SavingsPage() {
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader>
-            <CardTitle>Progress Overview</CardTitle>
-            <CardDescription>Track your savings progress</CardDescription>
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Progress Overview</CardTitle>
+            <CardDescription className="text-sm">Track your savings progress</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="px-0 sm:px-0 space-y-4">
             {savingsData && (
               <div className="space-y-4">
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Current Savings</span>
-                    <span>{getCurrencySymbol(userCurrency)}{(savingsData.currentAmount || 0).toFixed(2)}</span>
+                    <span className="font-medium">{getCurrencySymbol(userCurrency)}{(savingsData.currentAmount || 0).toFixed(2)}</span>
                   </div>
                   <Progress
                     value={savingsData.targetAmount > 0 
@@ -380,7 +384,7 @@ export default function SavingsPage() {
                   />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>Target Amount</span>
-                    <span>{getCurrencySymbol(userCurrency)}{(savingsData.targetAmount || 0).toFixed(2)}</span>
+                    <span className="font-medium">{getCurrencySymbol(userCurrency)}{(savingsData.targetAmount || 0).toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -409,8 +413,8 @@ export default function SavingsPage() {
 
                 {savingsData.targetDate && (
                   <div className="pt-4">
-                    <p className="text-md font-medium">Target Date</p>
-                    <p className="text-2xl font-bold my-1">
+                    <p className="text-sm sm:text-base font-medium">Target Date</p>
+                    <p className="text-xl sm:text-2xl font-bold my-1">
                       {(() => {
                         try {
                           const date = firestoreTimestampToDate(savingsData.targetDate);
@@ -444,16 +448,16 @@ export default function SavingsPage() {
             )}
           </CardContent>
         </Card>
-            </div>
+      </div>
 
       {savingsData?.monthlyData && savingsData.monthlyData.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Savings Trend</CardTitle>
-            <CardDescription>Your monthly savings trend over time</CardDescription>
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="px-0 sm:px-0 pb-2">
+            <CardTitle className="text-lg sm:text-xl">Savings Trend</CardTitle>
+            <CardDescription className="text-sm">Your monthly savings trend over time</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="h-[350px]">
+          <CardContent className="px-0 sm:px-0">
+            <div className="h-[250px] sm:h-[350px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={savingsData.monthlyData}
@@ -463,7 +467,7 @@ export default function SavingsPage() {
                   <XAxis dataKey="name" />
                   <YAxis />
                   <Tooltip 
-                    formatter={(value) => [`$${(value as number).toFixed(2)}`, "Savings"]}
+                    formatter={(value) => [`${getCurrencySymbol(userCurrency)}${(value as number).toFixed(2)}`, "Savings"]}
                     contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))' }}
                     labelFormatter={(label) => {
                       const dataPoint = savingsData.monthlyData?.find(d => d.name === label);
@@ -486,6 +490,6 @@ export default function SavingsPage() {
           </CardContent>
         </Card>
       )}
-                    </div>
+    </div>
   );
 }

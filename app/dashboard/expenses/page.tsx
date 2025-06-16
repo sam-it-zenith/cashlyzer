@@ -295,12 +295,12 @@ export default function ExpensesPage() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-8"
+      className="space-y-6 sm:space-y-8 p-3 sm:p-4 md:p-6 lg:p-8"
     >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <motion.div variants={item}>
-          <h1 className="text-3xl font-bold tracking-tight">Expenses</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Expenses</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Track and manage your spending
           </p>
         </motion.div>
@@ -312,15 +312,15 @@ export default function ExpensesPage() {
         </motion.div>
       </div>
       
-      <motion.div variants={item} className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <motion.div variants={item} className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader className="pb-2 px-4 sm:px-6">
             <CardTitle className="text-sm font-medium">
               Current Month
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-4 sm:px-6">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{expenses
                 .filter(expense => {
                   const now = new Date();
@@ -337,13 +337,13 @@ export default function ExpensesPage() {
         </Card>
         
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader className="pb-2 px-4 sm:px-6">
             <CardTitle className="text-sm font-medium">
               Previous Month
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-4 sm:px-6">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{expenses
                 .filter(expense => {
                   const now = new Date();
@@ -361,13 +361,13 @@ export default function ExpensesPage() {
         </Card>
         
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader className="pb-2 px-4 sm:px-6">
             <CardTitle className="text-sm font-medium">
               Filtered Total
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-4 sm:px-6">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{totalFilteredExpenses.toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -377,13 +377,13 @@ export default function ExpensesPage() {
         </Card>
         
         <Card>
-          <CardHeader className="pb-2">
+          <CardHeader className="pb-2 px-4 sm:px-6">
             <CardTitle className="text-sm font-medium">
               All Time
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-4 sm:px-6">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{expenses.reduce((total, expense) => total + expense.amount, 0).toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -395,14 +395,14 @@ export default function ExpensesPage() {
       
       <motion.div variants={item}>
         <Card>
-          <CardHeader>
+          <CardHeader className="px-4 sm:px-6">
             <CardTitle>Expense Filters</CardTitle>
             <CardDescription>
               Filter your expenses by category, date range, or search for specific notes
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <CardContent className="px-4 sm:px-6">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
               <div className="flex flex-col space-y-1.5">
                 <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                   Category
@@ -458,7 +458,7 @@ export default function ExpensesPage() {
             </div>
             
             {(selectedCategory || startDate || endDate || searchQuery) && (
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2">
                 <p className="text-sm text-muted-foreground">Active filters:</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedCategory && (
@@ -498,6 +498,8 @@ export default function ExpensesPage() {
         <RecentTransactions 
           transactions={expensesAsTransactions} 
           onDelete={handleDeleteExpense}
+          showAll={true}
+          type="expense"
           currencySymbol={getCurrencySymbol(userCurrency)}
         />
       </motion.div>
@@ -506,7 +508,6 @@ export default function ExpensesPage() {
         open={isAddExpenseOpen}
         onOpenChange={setIsAddExpenseOpen}
         onSuccess={handleRefreshExpenses}
-        currencySymbol={getCurrencySymbol(userCurrency)}
       />
     </motion.div>
   );

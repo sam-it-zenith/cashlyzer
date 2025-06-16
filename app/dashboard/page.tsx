@@ -416,7 +416,7 @@ export default function DashboardPage() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="space-y-4 md:space-y-6 lg:space-y-8 p-4 md:p-6 lg:p-8"
+        className="space-y-4 md:space-y-6 lg:space-y-8 p-3 sm:p-4 md:p-6 lg:p-8 pb-8"
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <motion.div variants={item} id="dashboard-welcome">
@@ -427,7 +427,7 @@ export default function DashboardPage() {
           </motion.div>
         </div>
       
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" id="total-balance">
+        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" id="total-balance">
           <StatsCard
             title="Monthly Income"
             value={`${getCurrencySymbol(userCurrency)}${summary?.monthlyIncome?.toFixed(2) || '0.00'}`}
@@ -458,7 +458,7 @@ export default function DashboardPage() {
           />
         </div>
       
-        <div id="income-expense-chart" className="w-full overflow-x-auto">
+        <div id="income-expense-chart" className="sm:w-full overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
           <SummaryChart 
             expenseData={summary?.expenseTrend?.map(trend => ({
               month: trend.month,
@@ -478,17 +478,17 @@ export default function DashboardPage() {
 
         <div className="grid gap-4 grid-cols-1 lg:grid-cols-2" id="savings-goals">
           <Card className="lg:col-span-2">
-            <CardHeader>
+            <CardHeader className="px-4 sm:px-6">
               <CardTitle className="text-xl md:text-2xl">AI Financial Insights</CardTitle>
               <CardDescription className="text-sm md:text-base">
                 Smart analysis of your financial patterns and recommendations
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 md:space-y-6">
+            <CardContent className="space-y-4 md:space-y-6 px-4 sm:px-6">
               {aiInsightsLoading ? (
                 <>
                   {/* Summary Section Skeleton */}
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     {[...Array(4)].map((_, i) => (
                       <div key={i} className="space-y-2">
                         <Skeleton className="h-4 w-24" />
@@ -500,9 +500,9 @@ export default function DashboardPage() {
                   {/* Insights Section Skeleton */}
                   <div className="space-y-4">
                     <Skeleton className="h-6 w-32" />
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
                       {[...Array(2)].map((_, i) => (
-                        <div key={i} className="flex items-start gap-2 p-4 rounded-lg bg-muted">
+                        <div key={i} className="flex items-start gap-2 p-3 sm:p-4 rounded-lg bg-muted">
                           <Skeleton className="h-6 w-6 rounded-full" />
                           <div className="space-y-2 flex-1">
                             <Skeleton className="h-4 w-24" />
@@ -517,9 +517,9 @@ export default function DashboardPage() {
                   {/* Predictions Section Skeleton */}
                   <div className="space-y-4">
                     <Skeleton className="h-6 w-40" />
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
                       {[...Array(2)].map((_, i) => (
-                        <div key={i} className="flex items-start gap-2 p-4 rounded-lg bg-muted">
+                        <div key={i} className="flex items-start gap-2 p-3 sm:p-4 rounded-lg bg-muted">
                           <Skeleton className="h-6 w-6 rounded-full" />
                           <div className="space-y-2 flex-1">
                             <Skeleton className="h-4 w-32" />
@@ -533,9 +533,9 @@ export default function DashboardPage() {
                   {/* Top Categories Section Skeleton */}
                   <div className="space-y-4">
                     <Skeleton className="h-6 w-48" />
-                    <div className="grid gap-4 md:grid-cols-3">
+                    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                       {[...Array(3)].map((_, i) => (
-                        <div key={i} className="p-4 rounded-lg bg-muted">
+                        <div key={i} className="p-3 sm:p-4 rounded-lg bg-muted">
                           <Skeleton className="h-4 w-24" />
                           <Skeleton className="h-8 w-32 mt-2" />
                         </div>
@@ -546,28 +546,28 @@ export default function DashboardPage() {
               ) : (
                 <>
                   {/* Summary Section */}
-                  <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-muted-foreground">Total Income</p>
-                      <p className="text-2xl font-bold">
+                      <p className="text-xl sm:text-2xl font-bold">
                         {getCurrencySymbol(userCurrency)}{aiInsights?.summary?.total_income?.toLocaleString() ?? '0'}
                       </p>
                     </div>
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-muted-foreground">Total Spent</p>
-                      <p className="text-2xl font-bold">
+                      <p className="text-xl sm:text-2xl font-bold">
                         {getCurrencySymbol(userCurrency)}{aiInsights?.summary?.total_spent?.toLocaleString() ?? '0'}
                       </p>
                     </div>
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-muted-foreground">Average Transaction</p>
-                      <p className="text-2xl font-bold">
+                      <p className="text-xl sm:text-2xl font-bold">
                         {getCurrencySymbol(userCurrency)}{aiInsights?.summary?.average_transaction?.toLocaleString() ?? '0'}
                       </p>
                     </div>
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-muted-foreground">Budget Status</p>
-                      <p className="text-2xl font-bold">
+                      <p className="text-xl sm:text-2xl font-bold">
                         {aiInsights?.summary?.budget_status ?? `${getCurrencySymbol(userCurrency)}${summary?.monthlyBudget?.toFixed(2) || '0.00'}`}
                       </p>
                     </div>
@@ -576,9 +576,9 @@ export default function DashboardPage() {
                   {/* Insights Section */}
                   <div className="space-y-4">
                     <h3 className="text-lg md:text-xl font-medium">Key Insights</h3>
-                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
                       {aiInsights?.insights?.map((insight, index) => (
-                        <div key={index} className="flex items-start gap-2 p-4 rounded-lg bg-muted">
+                        <div key={index} className="flex items-start gap-2 p-3 sm:p-4 rounded-lg bg-muted">
                           <div className="rounded-full bg-primary/10 p-1 mt-0.5">
                             <Lightbulb className="h-4 w-4 text-primary" />
                           </div>
@@ -596,9 +596,9 @@ export default function DashboardPage() {
                     aiInsights?.predictions && (
                       <div className="space-y-4">
                         <h3 className="text-lg md:text-xl font-medium">Financial Predictions</h3>
-                        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
                           {aiInsights?.predictions?.map((prediction, index) => (
-                            <div key={index} className="flex items-start gap-2 p-4 rounded-lg bg-muted">
+                            <div key={index} className="flex items-start gap-2 p-3 sm:p-4 rounded-lg bg-muted">
                               <div className="rounded-full bg-primary/10 p-1 mt-0.5">
                                 <TrendingUp className="h-4 w-4 text-primary" />
                               </div>
@@ -618,11 +618,11 @@ export default function DashboardPage() {
                     aiInsights?.summary?.top_categories && (
                       <div className="space-y-4">
                         <h3 className="text-lg md:text-xl font-medium">Top Spending Categories</h3>
-                        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                           {aiInsights?.summary?.top_categories?.map((category, index) => (
-                            <div key={index} className="p-4 rounded-lg bg-muted">
+                            <div key={index} className="p-3 sm:p-4 rounded-lg bg-muted">
                               <p className="text-sm font-medium capitalize">{category.category}</p>
-                              <p className="text-2xl font-bold mt-2">
+                              <p className="text-xl sm:text-2xl font-bold mt-2">
                                 {getCurrencySymbol(userCurrency)}{category.amount.toLocaleString()}
                               </p>
                             </div>
@@ -645,13 +645,14 @@ export default function DashboardPage() {
           </Card>
         </div>
       
-        <div id="recent-transactions" className="w-full overflow-x-auto">
+      <div id="recent-transactions" className="sm:w-full overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
           <RecentTransactions 
             transactions={recentTransactions} 
             onDelete={handleDeleteTransaction}
             currencySymbol={getCurrencySymbol(userCurrency)}
           />
         </div>
+      
       </motion.div>
     </div>
   );

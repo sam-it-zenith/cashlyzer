@@ -203,16 +203,16 @@ export default function IncomePage() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-8"
+      className="space-y-6 sm:space-y-8 p-3 sm:p-4 md:p-6 lg:p-8"
     >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <motion.div variants={item}>
-          <h1 className="text-3xl font-bold tracking-tight">Income</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Income</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Track and manage your income sources
           </p>
         </motion.div>
-        <motion.div variants={item}>
+        <motion.div variants={item} className="w-full sm:w-auto">
           <Button
             onClick={() => setIsAddIncomeOpen(true)}
             className="w-full"
@@ -223,15 +223,15 @@ export default function IncomePage() {
         </motion.div>
       </div>
       
-      <motion.div variants={item} className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-2">
+      <motion.div variants={item} className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="pb-2 px-0 sm:px-0">
             <CardTitle className="text-sm font-medium">
               Current Month
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-0 sm:px-0">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{incomes
                 .filter(income => {
                   const now = new Date();
@@ -247,14 +247,14 @@ export default function IncomePage() {
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader className="pb-2">
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="pb-2 px-0 sm:px-0">
             <CardTitle className="text-sm font-medium">
               Previous Month
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-0 sm:px-0">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{incomes
                 .filter(income => {
                   const now = new Date();
@@ -271,14 +271,14 @@ export default function IncomePage() {
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader className="pb-2">
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="pb-2 px-0 sm:px-0">
             <CardTitle className="text-sm font-medium">
               Filtered Total
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-0 sm:px-0">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{totalFilteredIncomes.toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -287,14 +287,14 @@ export default function IncomePage() {
           </CardContent>
         </Card>
         
-        <Card>
-          <CardHeader className="pb-2">
+        <Card className="p-3 sm:p-4">
+          <CardHeader className="pb-2 px-0 sm:px-0">
             <CardTitle className="text-sm font-medium">
               All Time
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
+          <CardContent className="px-0 sm:px-0">
+            <div className="text-xl sm:text-2xl font-bold">
               {getCurrencySymbol(userCurrency)}{incomes.reduce((total, income) => total + income.amount, 0).toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -306,26 +306,26 @@ export default function IncomePage() {
       
       <motion.div variants={item} className="grid gap-4 grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <Card className="p-3 sm:p-4">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 px-0 sm:px-0">
               <div className="space-y-1">
-                <CardTitle>Income by Source</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-lg sm:text-xl">Income by Source</CardTitle>
+                <CardDescription className="text-sm">
                   Breakdown of your income sources
                 </CardDescription>
               </div>
               <BarChart3 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent>
-              <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
+            <CardContent className="px-0 sm:px-0">
+              <div className="h-[250px] sm:h-[300px] md:h-[350px]">
+                <ResponsiveContainer width="100%" height="100%" className="mt-8">
                   <BarChart
                     data={sourceChartData}
                     margin={{
                       top: 20,
                       right: 10,
-                      left: 65,
-                      bottom: 70,
+                      left: 50,
+                      bottom: 10,
                     }}
                   >
                     <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
@@ -333,15 +333,24 @@ export default function IncomePage() {
                       dataKey="source" 
                       angle={-45} 
                       textAnchor="end"
-                      height={70}
-                      tick={{fontSize: 12}}
+                      height={60}
+                      tick={{fontSize: 10}}
+                      interval={0}
+                      tickMargin={10}
                     />
                     <YAxis 
                       tickFormatter={(value) => `${getCurrencySymbol(userCurrency)}${value.toFixed(2)}`}
+                      tick={{fontSize: 10}}
+                      width={45}
                     />
                     <Tooltip 
                       formatter={(value) => [`${getCurrencySymbol(userCurrency)}${(value as number).toFixed(2)}`, "Amount"]}
-                      contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))' }}
+                      contentStyle={{ 
+                        backgroundColor: 'hsl(var(--card))', 
+                        borderColor: 'hsl(var(--border))',
+                        fontSize: '12px',
+                        padding: '8px'
+                      }}
                     />
                     <Bar 
                       dataKey="amount" 
@@ -357,21 +366,21 @@ export default function IncomePage() {
         </div>
         
         <div className="lg:col-span-1">
-          <Card>
-            <CardHeader>
-              <CardTitle>Income Sources</CardTitle>
-              <CardDescription>
+          <Card className="p-3 sm:p-4">
+            <CardHeader className="px-0 sm:px-0">
+              <CardTitle className="text-lg sm:text-xl">Income Sources</CardTitle>
+              <CardDescription className="text-sm">
                 Summary of your income sources
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+            <CardContent className="px-0 sm:px-0">
+              <div className="space-y-3 sm:space-y-4">
                 {sourceChartData.length > 0 ? (
                   sourceChartData.map((source, index) => (
                     <div key={index} className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <div className={`w-3 h-3 rounded-full bg-chart-${(index % 5) + 1}`} />
-                        <span className="text-sm">{source.source}</span>
+                        <span className="text-sm truncate max-w-[150px] sm:max-w-none">{source.source}</span>
                       </div>
                       <span className="text-sm font-medium">{getCurrencySymbol(userCurrency)}{(source.amount as number).toFixed(2)}</span>
                     </div>

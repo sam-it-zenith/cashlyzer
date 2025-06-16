@@ -182,31 +182,35 @@ export default function BudgetPage() {
   const budgetStatus = getBudgetStatus();
 
   return (
-    <div className="container mx-auto py-6 px-4 space-y-8">
+    <div className="container mx-auto py-4 sm:py-6 px-3 sm:px-4 space-y-6 sm:space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Budget Management</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Budget Management</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Set and track your monthly budget
           </p>
         </div>
       </div>
       
       {budgetStatus && (
-        <Alert variant={budgetStatus.variant}>
-          {budgetStatus.icon}
-          <AlertTitle>{budgetStatus.title}</AlertTitle>
-          <AlertDescription className="mt-1">{budgetStatus.description}</AlertDescription>
-          </Alert>
+        <Alert variant={budgetStatus.variant} className="p-3 sm:p-4">
+          <div className="flex items-start gap-3">
+            {budgetStatus.icon}
+            <div>
+              <AlertTitle className="text-base sm:text-lg">{budgetStatus.title}</AlertTitle>
+              <AlertDescription className="mt-1 text-sm">{budgetStatus.description}</AlertDescription>
+            </div>
+          </div>
+        </Alert>
       )}
       
-        <Card>
-          <CardHeader>
-          <CardTitle>Monthly Budget</CardTitle>
-          <CardDescription>Set your overall monthly budget</CardDescription>
-          </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex gap-4">
+      <Card className="p-3 sm:p-4">
+        <CardHeader className="px-0 sm:px-0 pb-2">
+          <CardTitle className="text-lg sm:text-xl">Monthly Budget</CardTitle>
+          <CardDescription className="text-sm">Set your overall monthly budget</CardDescription>
+        </CardHeader>
+        <CardContent className="px-0 sm:px-0 space-y-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Input
               type="number"
               placeholder={`Enter monthly budget (${getCurrencySymbol(userCurrency)})`}
@@ -214,15 +218,15 @@ export default function BudgetPage() {
               onChange={(e) => setMonthlyBudget(e.target.value)}
               className="flex-1"
             />
-            <Button onClick={handleUpdateMonthlyBudget}>Update</Button>
-                  </div>
+            <Button onClick={handleUpdateMonthlyBudget} className="w-full sm:w-auto">Update</Button>
+          </div>
           {budgetData && (
-                  <div className="space-y-2">
+            <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span>Current Spending</span>
-                <span>{getCurrencySymbol(userCurrency)}{(budgetData.totalExpenses || 0).toFixed(2)}</span>
-                    </div>
-                    <Progress 
+                <span className="font-medium">{getCurrencySymbol(userCurrency)}{(budgetData.totalExpenses || 0).toFixed(2)}</span>
+              </div>
+              <Progress 
                 value={budgetData.monthlyBudget > 0 
                   ? (budgetData.totalExpenses / budgetData.monthlyBudget) * 100 
                   : 0}
@@ -230,12 +234,12 @@ export default function BudgetPage() {
               />
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Monthly Budget</span>
-                <span>{getCurrencySymbol(userCurrency)}{(budgetData.monthlyBudget || 0).toFixed(2)}</span>
-                </div>
+                <span className="font-medium">{getCurrencySymbol(userCurrency)}{(budgetData.monthlyBudget || 0).toFixed(2)}</span>
               </div>
-            )}
-          </CardContent>
-        </Card>
-                    </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
   );
 }

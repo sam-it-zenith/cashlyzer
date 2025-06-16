@@ -250,31 +250,31 @@ export default function TransactionsPage() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-8"
+      className="space-y-6 sm:space-y-8 p-3 sm:p-4 md:p-6 lg:p-8"
     >
       <motion.div variants={item}>
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
           {selectedType === "all" 
             ? "All Transactions" 
             : selectedType === "expense" 
               ? "All Expenses" 
               : "All Income"}
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm sm:text-base text-muted-foreground">
           View and manage all your financial transactions
         </p>
       </motion.div>
 
       <motion.div variants={item}>
         <Card>
-          <CardHeader>
+          <CardHeader className="px-4 sm:px-6">
             <CardTitle>Transaction Filters</CardTitle>
             <CardDescription>
               Filter and sort your transactions
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <CardContent className="px-3 sm:px-6">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
               <div className="flex flex-col space-y-1.5">
                 <label className="text-sm font-medium">Type</label>
                 <Select value={selectedType} onValueChange={setSelectedType}>
@@ -295,6 +295,7 @@ export default function TransactionsPage() {
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
+                  className="w-full"
                 />
               </div>
               
@@ -304,17 +305,22 @@ export default function TransactionsPage() {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
+                  className="w-full"
                 />
               </div>
               
               <div className="flex flex-col space-y-1.5">
                 <label className="text-sm font-medium">Search</label>
-                <Input
-                  type="text"
-                  placeholder="Search transactions..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+                <div className="relative">
+                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Search transactions..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-8"
+                  />
+                </div>
               </div>
 
               <div className="flex flex-col space-y-1.5">
@@ -331,7 +337,7 @@ export default function TransactionsPage() {
             </div>
             
             {(selectedType !== "all" || startDate || endDate || searchQuery) && (
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2">
                 <p className="text-sm text-muted-foreground">Active filters:</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedType !== "all" && (

@@ -110,8 +110,8 @@ export function RecentTransactions({
 
   return (
     <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between">
+      <CardHeader className="px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <CardTitle>
               {showAll 
@@ -135,14 +135,15 @@ export function RecentTransactions({
           <Button 
             variant="outline" 
             onClick={() => router.push(getSeeMoreDestination())}
+            className="w-full sm:w-auto"
           >
             See More
           </Button>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-2 sm:px-6">
         <motion.div 
-          className="space-y-4"
+          className="space-y-3 sm:space-y-4"
           variants={container}
           initial="hidden"
           animate="show"
@@ -154,9 +155,9 @@ export function RecentTransactions({
                   key={transaction.id}
                   variants={item}
                   exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                  className="flex items-center justify-between p-4 rounded-lg border"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 rounded-lg border gap-3 sm:gap-4"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div className={`rounded-full p-2 ${
                       transaction.type === "expense" 
                         ? "bg-red-100 dark:bg-red-900/20" 
@@ -184,7 +185,7 @@ export function RecentTransactions({
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4">
                     {transaction.type === "expense" && transaction.category && (
                       <Badge variant="outline" className="hidden sm:flex">
                         <Tag className="h-3 w-3 mr-1" />

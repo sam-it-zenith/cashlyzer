@@ -82,12 +82,3 @@
 }
 
 
-.sticky-image {
-  position: fixed;
-  bottom: 20px; /* distance from bottom */
-  right: 20px;  /* distance from right */
-  width: 90px;  /* adjust size as needed */
-  height: auto;
-  z-index: 1000; /* ensure it stays on top */
-  cursor: pointer;
-}
