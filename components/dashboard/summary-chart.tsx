@@ -107,18 +107,18 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                     <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                     <XAxis 
                       dataKey="month" 
-                      tick={{ fontSize: 10, sm: 11 }}
+                      tick={{ fontSize: 11 }}
                       tickLine={false}
                       minTickGap={20}
                       height={40}
                     />
                     <YAxis 
                       tickFormatter={formatCurrency}
-                      tick={{ fontSize: 10, sm: 11 }}
+                      tick={{ fontSize: 11 }}
                       tickLine={false}
                       width={50}
                     />
-                    <Tooltip<number, string> content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                     <Area 
                       type="monotone" 
@@ -147,18 +147,18 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                     <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                     <XAxis 
                       dataKey="month" 
-                      tick={{ fontSize: 10, sm: 11 }}
+                      tick={{ fontSize: 11 }}
                       tickLine={false}
                       minTickGap={20}
                       height={40}
                     />
                     <YAxis 
                       tickFormatter={formatCurrency}
-                      tick={{ fontSize: 10, sm: 11 }}
+                      tick={{ fontSize: 11 }}
                       tickLine={false}
                       width={50}
                     />
-                    <Tooltip<number, string> content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                     <Bar 
                       dataKey="expense" 
@@ -200,7 +200,7 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                         />
                       ))}
                     </Pie>
-                    <Tooltip<number, string> 
+                    <Tooltip 
                       content={(props) => (
                         <div className="rounded-lg border bg-card p-3 shadow-sm">
                           {props.payload && props.payload[0] && (
