@@ -79,10 +79,10 @@ export default function TransactionsPage() {
 
       // Fetch both expenses and incomes
       const [expensesResponse, incomesResponse] = await Promise.all([
-        fetch("https://api.cashlyzer.com/api/expenses", {
+        fetch("https://api2.cashlyzer.com/api/expenses", {
           headers: { Authorization: headers.Authorization },
         }),
-        fetch("https://api.cashlyzer.com/api/incomes", {
+        fetch("https://api2.cashlyzer.com/api/incomes", {
           headers: { Authorization: headers.Authorization },
         }),
       ]);
@@ -123,7 +123,7 @@ export default function TransactionsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -209,7 +209,7 @@ export default function TransactionsPage() {
       }
 
       const endpoint = type === "expense" ? "expenses" : "incomes";
-      const response = await fetch(`https://api.cashlyzer.com/api/${endpoint}/${id}`, {
+      const response = await fetch(`https://api2.cashlyzer.com/api/${endpoint}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: headers.Authorization,

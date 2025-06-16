@@ -121,7 +121,7 @@ export default function DashboardPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/ai/insights", {
+      const response = await fetch("https://api2.cashlyzer.com/api/ai/insights", {
         headers: { Authorization: headers.Authorization },
         });
         
@@ -148,7 +148,7 @@ export default function DashboardPage() {
       }
         
       // Fetch expenses
-      const expensesResponse = await fetch("https://api.cashlyzer.com/api/expenses", {
+      const expensesResponse = await fetch("https://api2.cashlyzer.com/api/expenses", {
         headers: { Authorization: headers.Authorization },
         });
         
@@ -160,7 +160,7 @@ export default function DashboardPage() {
       const expensesArray = expensesData.expenses || [];
 
       // Fetch incomes
-      const incomesResponse = await fetch("https://api.cashlyzer.com/api/incomes", {
+      const incomesResponse = await fetch("https://api2.cashlyzer.com/api/incomes", {
         headers: { Authorization: headers.Authorization },
         });
         
@@ -172,7 +172,7 @@ export default function DashboardPage() {
       const incomesArray = incomesData.incomes || [];
 
       // Fetch budget
-      const budgetResponse = await fetch("https://api.cashlyzer.com/api/budget", {
+      const budgetResponse = await fetch("https://api2.cashlyzer.com/api/budget", {
         headers: { Authorization: headers.Authorization },
       });
         
@@ -327,7 +327,7 @@ export default function DashboardPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -358,7 +358,7 @@ export default function DashboardPage() {
       }
 
       const endpoint = type === "expense" ? "expenses" : "incomes";
-      const response = await fetch(`https://api.cashlyzer.com/api/${endpoint}/${id}`, {
+      const response = await fetch(`https://api2.cashlyzer.com/api/${endpoint}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: headers.Authorization,

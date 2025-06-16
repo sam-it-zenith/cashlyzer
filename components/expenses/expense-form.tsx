@@ -90,7 +90,7 @@ export function ExpenseForm({
           throw new Error("No auth headers available");
         }
 
-        const response = await fetch("https://api.cashlyzer.com/api/categories", {
+        const response = await fetch("https://api2.cashlyzer.com/api/categories", {
           headers: {
             Authorization: headers.Authorization,
           },
@@ -163,7 +163,7 @@ export function ExpenseForm({
       };
 
 
-      const response = await fetch("https://api.cashlyzer.com/api/expenses", {
+      const response = await fetch("https://api2.cashlyzer.com/api/expenses", {
         method: "POST",
         headers: {
           Authorization: headers.Authorization,

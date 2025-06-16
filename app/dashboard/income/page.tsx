@@ -55,7 +55,7 @@ export default function IncomePage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -78,7 +78,7 @@ export default function IncomePage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/incomes", {
+      const response = await fetch("https://api2.cashlyzer.com/api/incomes", {
         headers: { Authorization: headers.Authorization },
       });
         
@@ -135,7 +135,7 @@ export default function IncomePage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch(`https://api.cashlyzer.com/api/incomes/${id}`, {
+      const response = await fetch(`https://api2.cashlyzer.com/api/incomes/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: headers.Authorization,

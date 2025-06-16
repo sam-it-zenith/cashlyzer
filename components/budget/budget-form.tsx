@@ -71,7 +71,7 @@ export function BudgetForm({ open, onOpenChange, onSuccess, currentBudget }: Bud
         monthlyBudget: parseFloat(data.monthlyBudget),
       };
       
-      const response = await fetch("https://api.cashlyzer.com/api/budget", {
+      const response = await fetch("https://api2.cashlyzer.com/api/budget", {
         method: "POST",
         headers: {
           Authorization: headers.Authorization,

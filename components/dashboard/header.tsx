@@ -54,7 +54,7 @@ export function Header({ toggleMobileMenu, isMobileMenuOpen }: { toggleMobileMen
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 

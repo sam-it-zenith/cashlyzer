@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.cashlyzer.com/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api2.cashlyzer.com/api';
 
 interface AuthState {
   user: any | null;

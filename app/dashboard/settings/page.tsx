@@ -97,7 +97,7 @@ export default function SettingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         headers: { Authorization: headers.Authorization }
       });
 
@@ -161,7 +161,7 @@ export default function SettingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const updateResponse = await fetch("https://api.cashlyzer.com/api/profile", {
+      const updateResponse = await fetch("https://api2.cashlyzer.com/api/profile", {
         method: "PUT",
         headers: { 
           Authorization: headers.Authorization,
@@ -206,7 +206,7 @@ export default function SettingsPage() {
         }
       };
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         method: "PUT",
         headers: { 
           Authorization: headers.Authorization,
@@ -274,7 +274,7 @@ export default function SettingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         method: "DELETE",
         headers: { Authorization: headers.Authorization },
       });
@@ -318,7 +318,7 @@ export default function SettingsPage() {
       setSettings(newSettings);
 
       // Update profile with new notification preferences
-      const response = await fetch("https://api.cashlyzer.com/api/profile", {
+      const response = await fetch("https://api2.cashlyzer.com/api/profile", {
         method: "PUT",
         headers: { 
           Authorization: headers.Authorization,
@@ -353,7 +353,7 @@ export default function SettingsPage() {
         throw new Error("No auth headers available");
       }
 
-      const response = await fetch("https://api.cashlyzer.com/api/summary/monthly", {
+      const response = await fetch("https://api2.cashlyzer.com/api/summary/monthly", {
         method: "POST",
         headers: {
           Authorization: headers.Authorization,

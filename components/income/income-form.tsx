@@ -74,7 +74,7 @@ export function IncomeForm({ open, onOpenChange, onSuccess, currencySymbol = "$"
         date: data.date,
       };
       
-      const response = await fetch("https://api.cashlyzer.com/api/incomes", {
+      const response = await fetch("https://api2.cashlyzer.com/api/incomes", {
         method: "POST",
         headers: {
           Authorization: headers.Authorization,
