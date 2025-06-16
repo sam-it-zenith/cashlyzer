@@ -32,7 +32,7 @@ interface SummaryChartProps {
 interface CustomTooltipProps {
   active?: boolean;
   payload?: Array<{
-    value: number;
+    value: any;
     name: string;
     payload: {
       month: string;
@@ -51,7 +51,7 @@ const CustomTooltip = ({ active, payload, label, currencySymbol }: CustomTooltip
       <div className="rounded-lg border bg-card p-3 shadow-sm">
         <p className="text-sm font-medium text-foreground">{label}</p>
         <p className="text-sm text-muted-foreground">
-          {currencySymbol}{payload[0].value.toFixed(2)}
+          {currencySymbol}{Number(payload[0].value).toFixed(2)}
         </p>
       </div>
     );
