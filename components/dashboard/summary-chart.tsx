@@ -29,29 +29,18 @@ interface SummaryChartProps {
   currencySymbol: string;
 }
 
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: Array<{
-    value: any;
-    name: string;
-    payload: {
-      month: string;
-      amount: number;
-    };
-  }>;
-  label?: string;
+interface CustomTooltipProps extends Partial<TooltipProps<number, string>> {
   currencySymbol: string;
 }
 
 const CustomTooltip = ({ active, payload, label, currencySymbol }: CustomTooltipProps) => {
-  const { theme } = useTheme();
-  
   if (active && payload && payload.length) {
+    const value = Number(payload[0].value);
     return (
       <div className="rounded-lg border bg-card p-3 shadow-sm">
         <p className="text-sm font-medium text-foreground">{label}</p>
         <p className="text-sm text-muted-foreground">
-          {currencySymbol}{Number(payload[0].value).toFixed(2)}
+          {currencySymbol}{isNaN(value) ? '0.00' : value.toFixed(2)}
         </p>
       </div>
     );
@@ -126,7 +115,21 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                       tickLine={false}
                       width={50}
                     />
-                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip 
+                      content={({ active, payload, label }) => {
+                        if (active && payload && payload.length) {
+                          return (
+                            <div className="rounded-lg border bg-card p-3 shadow-sm">
+                              <p className="text-sm font-medium text-foreground">{label}</p>
+                              <p className="text-sm text-muted-foreground">
+                                Expenses: {currencySymbol}{Number(payload[0].value).toFixed(2)}
+                              </p>
+                            </div>
+                          );
+                        }
+                        return null;
+                      }}
+                    />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                     <Area 
                       type="monotone" 
@@ -166,7 +169,26 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                       tickLine={false}
                       width={50}
                     />
-                    <Tooltip content={(props) => <CustomTooltip {...props} currencySymbol={currencySymbol} />} />
+                    <Tooltip 
+                      content={({ active, payload, label }) => {
+                        if (active && payload && payload.length) {
+                          const expense = Number(payload[0].value);
+                          const income = Number(payload[1].value);
+                          return (
+                            <div className="rounded-lg border bg-card p-3 shadow-sm">
+                              <p className="text-sm font-medium text-foreground">{label}</p>
+                              <p className="text-sm text-muted-foreground">
+                                Expenses: {currencySymbol}{isNaN(expense) ? '0.00' : expense.toFixed(2)}
+                              </p>
+                              <p className="text-sm text-muted-foreground">
+                                Income: {currencySymbol}{isNaN(income) ? '0.00' : income.toFixed(2)}
+                              </p>
+                            </div>
+                          );
+                        }
+                        return null;
+                      }}
+                    />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                     <Bar 
                       dataKey="expense" 
@@ -193,7 +215,7 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      outerRadius={80}
+                      outerRadius={isMobile ? 80 : 120}
                       fill="#8884d8"
                       dataKey="value"
                       nameKey="name"
@@ -217,10 +239,10 @@ export function SummaryChart({ expenseData, incomeData, categoryData, currencySy
                                 {props.payload[0].name}
                               </p>
                               <p className="text-sm text-muted-foreground">
-                                {currencySymbol}{props.payload[0].value?.toFixed(2)}
+                                {currencySymbol}{typeof props.payload?.[0]?.value === 'number' ? props.payload[0].value.toFixed(2) : '0.00'}
                               </p>
                               <p className="text-xs text-muted-foreground">
-                                {((props.payload[0].value / categoryData.reduce((sum, item) => sum + item.value, 0)) * 100).toFixed(0)}% of total
+                                {((Number(props.payload?.[0]?.value) || 0) / categoryData.reduce((sum, item) => sum + item.value, 0) * 100).toFixed(0)}% of total
                               </p>
                             </>
                           )}
